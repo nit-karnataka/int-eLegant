@@ -1,0 +1,183 @@
+[
+    {
+        "id": 1,
+        "typeOf": 1,
+        "acceptNext": 2,
+        "form": "",
+        "who": "$stud"
+    },
+    {
+        "id": 2,
+        "typeOf": 2,
+        "what": 1,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$pi,$coi",
+        "acceptNext": 3,
+        "rejectStep": 1
+    },
+    {
+        "id": 3,
+        "typeOf": 2,
+        "what": 1,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "acceptNext": 4,
+        "rejectStep": 1
+    },
+    {
+        "id": 4,
+        "typeOf": 2,
+        "what": 1,
+        "who": "$dor",
+        "acceptNext": 5,
+        "rejectStep": 1
+    },
+    {
+        "id": 5,
+        "typeOf": 1,
+        "name": "Agenda",
+        "acceptNext": 6,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "form": ""
+    },
+    {
+        "id": 6,
+        "typeOf": 2,
+        "what": 5,
+        "who": "$dor",
+        "acceptNext": 7,
+        "rejectStep": 5
+    },
+    {
+        "id": 7,
+        "typeOf": 4,
+        "acceptNext": 8,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "members": -1
+    },
+    {
+        "id": 8,
+        "typeOf": 5,
+        "members": 7,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "acceptNext": 10
+    },
+    {
+        "id": 10,
+        "typeOf": 1,
+        "acceptNext": 11,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "form": ""
+    },
+    {
+        "id": 11,
+        "typeOf": 3,
+        "acceptNext": 12,
+        "rejectStep": 10,
+        "whoID": 8
+    },
+    {
+        "id": 12,
+        "typeOf": 3,
+        "acceptNext": 12,
+        "rejectStep": 12,
+        "acceptNextExtra": 13,
+        "whoID": 7
+    },
+    {
+        "id": 13,
+        "typeOf": 1,
+        "acceptNext": 14,
+        "form": "",
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec"
+    },
+    {
+        "id": 15,
+        "typeOf": 1,
+        "acceptNext": 16,
+        "who": "$stud"
+    },
+    {
+        "id": 14,
+        "typeOf": 6,
+        "forms": "$forms",
+        "acceptNext": 15,
+        "who": "$stud"
+    },
+    {
+        "id": 16,
+        "typeOf": 2,
+        "acceptNext": 17,
+        "what": 14,
+        "rejectStep": 14,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$pi,$coi"
+    },
+    {
+        "id": 17,
+        "typeOf": 5,
+        "what": 14,
+        "acceptNext": 18,
+        "members": 7
+    },
+    {
+        "id": 18,
+        "typeOf": 3,
+        "what": 14,
+        "acceptNext": 19,
+        "rejectStep": -1,
+        "whoID": 17
+    },
+    {
+        "id": 19,
+        "typeOf": 1,
+        "form": "",
+        "acceptNext": 20,
+        "who": "$stud"
+    },
+    {
+        "id": 20,
+        "typeOf": 2,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$pi,$coi",
+        "acceptNext": 21
+    },
+    {
+        "id": 21,
+        "typeOf": 2,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "acceptNext": 22
+    },
+    {
+        "id": 22,
+        "typeOf": 5,
+        "who": "",
+        "whoID": -1,
+        "generatorQuery": "$sec",
+        "members": 7,
+        "acceptNext": 23
+    },
+    {
+        "id": 23,
+        "typeOf": 3,
+        "members": 22,
+        "acceptNext": -1,
+        "rejectStep": 19
+    }
+]

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package formproto;
+
+option go_package = "formproto";
+
+service FormService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc View(ViewRequest) returns (ViewResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+}
+
+message ProtocolForm {
+	string conflictInterestTa  = 1;
+           bool cbPublications = 2;
+           string taPublications = 3;
+           string projectInvestigator = 4;
+          repeated string  projectCoInvestigator = 5;
+ string           projectPeriod = 6;
+           string dnbName = 7;
+string            dnbContact = 8;
+string            dnbDesignation = 9;
+      string      dnbEmail = 10;
+           string timeDataAnalysis = 11;
+           string timeIndividualPatient = 12;
+           string timeProspectiveStudies = 13;
+            string timeRetrospectiveStudies = 14;
+            string timeTotalDuration = 15;
+            string timeWriteUps = 16;
+            string projectCode = 17;
+string            projectName = 18;
+      string      budgetEstimate = 19;
+          string  uploadFile = 20;
+           bool conflictInterest = 21;
+}
+
+message Form {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	ProtocolForm protocolForm = 2;
+}
+
+message CreateRequest {
+	Form form = 1;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message ViewRequest {
+	string id = 1;
+}
+
+message ViewResponse {
+	Form form = 1;
+}
+
+message UpdateRequest {
+	Form form = 1;
+}
+
+message UpdateResponse {
+}

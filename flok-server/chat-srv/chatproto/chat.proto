@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package chatproto;
+
+option go_package = "chatproto";
+
+service ChatService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc InsertComment(InsertCommentRequest) returns (InsertCommentResponse) {}
+    rpc View(ViewRequest) returns (ViewResponse) {}
+    rpc Freeze(FreezeRequest) returns (FreezeResponse) {}
+}
+
+message Chat {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	repeated Comment comments = 2;
+	repeated string permittedUsers = 3;
+	bool isFreeze = 4;
+}
+
+message Comment {
+	string owner = 1;
+	string content = 2;
+}
+
+message CreateRequest {
+	repeated string owner = 1;
+	bool isFreeze = 2;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message InsertCommentRequest {
+	string owner = 1;
+	string content = 2;
+	string chatID = 3;
+}
+
+message InsertCommentResponse {
+	bool success = 1;
+}
+
+message ViewRequest {
+	string userID = 1;
+	string chatID = 2;
+}
+
+message ViewResponse {
+	Chat chat = 1;
+}
+
+message FreezeRequest {
+	string userID = 1;
+	string chatID = 2;
+	bool isFreeze = 3;
+}
+
+message FreezeResponse {
+}

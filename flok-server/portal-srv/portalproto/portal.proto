@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package portalproto;
+
+option go_package = "portalproto";
+
+service PortalService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc View(ViewRequest) returns (ViewResponse) {}
+    rpc Freeze(FreezeRequest) returns (FreezeResponse) {}
+    rpc SetApprove(SetApproveRequest) returns (SetApproveResponse) {}
+    rpc SetSubmitted(SetSubmittedRequest) returns (SetSubmittedResponse) {}
+}
+
+message Portal {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	string studentID = 2;
+	string piID = 3;
+	bool isPIApproved = 4;
+	bool isSecApproved = 5;
+	bool isDORApproved = 6;
+	string rejectionComment = 7;
+	bool isFreeze = 8;
+	bool isSubmitted = 9;
+}
+
+message CreateRequest {
+	string piID = 1;
+	string studentID = 2;
+	bool isFreeze = 3;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message ViewRequest {
+	string userID = 1;
+	string portalID = 2;
+}
+
+message ViewResponse {
+	Portal portal = 1;
+}
+
+message FreezeRequest {
+	string secID = 1;
+	string portalID = 2;
+	bool isFreeze = 3;
+}
+
+message FreezeResponse {
+}
+
+message SetApproveRequest {
+	string userID = 1;
+	string portalID = 2;
+	bool isApproved = 3;
+	string rejectionComment = 4;
+	int32 level = 5;
+}
+
+message SetApproveResponse {
+	bool success = 1;
+}
+
+message SetSubmittedRequest {
+	string id = 1;
+	string user = 2;
+	bool isSubmitted = 3;
+}
+
+message SetSubmittedResponse {
+}

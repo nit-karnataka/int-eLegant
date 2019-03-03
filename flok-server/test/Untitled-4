@@ -1,0 +1,226 @@
+{
+	"_id" : ObjectId("5c7aefb4520d4339c00883b4"),
+	"state" : {
+	},
+	"steps" : [
+		{
+            "name": "Student Initital Submission",
+			"id" : 1,
+			"typeOf" : 6,
+			"forms" : [
+				"5c7b51fb7df5e53515c14889"
+			],
+			"acceptNext" : 2,
+			"who" : "$stud"
+		},
+		{
+            "name": "Initial Submission Accept By PI",
+			"id" : 2,
+			"typeOf" : 2,
+			"rejectStep" : 1,
+			"acceptNext" : 3,
+			"what" : 1,
+			"prefilledMembers" : [
+				"pi"
+			]
+		},
+		{
+            "name": "Initial Submission Accept By Sec"  ,          
+			"id" : 3,
+			"typeOf" : 2,
+			"rejectStep" : 1,
+			"acceptNext" : 4,
+			"what" : 1,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Initial Submission Accept By DOR",
+			"id" : 4,
+			"typeOf" : 2,
+			"rejectStep" : 1,
+			"acceptNext" : 5,
+			"what" : 1,
+			"who" : "$dor"
+		},
+		{
+            "name": "Agenda Submission",
+			"id" : 5,
+			"name" : "Agenda",
+			"typeOf" : 1,
+			"doc" : "test",
+			"acceptNext" : 6,
+			"who" : "sec"
+		},
+		{
+            "name": "Agenda Accept by DOR",
+			"id" : 6,
+			"typeOf" : 2,
+			"rejectStep" : 5,
+			"acceptNext" : 7,
+			"what" : 5,
+			"who" : "$dor"
+		},
+		{
+            "name": "Adding members to IRB meeting",
+			"id" : 7,
+			"typeOf" : 4,
+			"acceptNext" : 8,
+			"members" : -1,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Selection of Present members",
+			"id" : 8,
+			"typeOf" : 5,
+			"acceptNext" : 10,
+			"members" : 7,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Minutes Upload",
+			"id" : 9,
+			"typeOf" : 1,
+			"doc" : "test",
+			"acceptNext" : 10,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Acceptance of Minutes by IRB",
+			"id" : 10,
+			"typeOf" : 3,
+			"rejectStep" : 9,
+			"acceptNext" : 11,
+			"what" : 9,
+			"whoID" : 8
+		},
+		{
+            "name": "Comment and modification for projects by IRB",
+			"id" : 11,
+			"typeOf" : 3,
+			"rejectStep" : 11,
+			"acceptNext" : 11,
+			"acceptNextExtra" : 12,
+			"what" : 1,
+			"who" : "sec",
+			"whoID" : 7
+		},
+		{
+            "name": "Querry Letter upload by Sec",
+			"id" : 12,
+			"typeOf" : 1,
+			"doc" : "test",
+			"acceptNext" : 13,
+			"whoID" : -1,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Upload of Querry letter replies",
+			"id" : 13,
+			"typeOf" : 1,
+			"doc" : "test",
+			"acceptNext" : 14,
+			"who" : "$stud"
+		},
+		{
+            "name": "Form modification by Student",
+			"id" : 14,
+			"typeOf" : 6,
+			"forms" : [
+				"5c7b51fb7df5e53515c14889"
+			],
+			"acceptNext" : 15,
+			"who" : "$stud"
+		},
+		{
+            "name": "Second Submission Accept By PI",
+			"id" : 15,
+			"typeOf" : 2,
+			"rejectStep" : 14,
+			"acceptNext" : 16,
+			"what" : 14,
+			"whoID" : -1,
+			"prefilledMembers" : [
+				"pi"
+			]
+		},
+		{
+            "name": "Second Submission Accept By Sec",
+			"id" : 16,
+			"typeOf" : 5,
+			"acceptNext" : 17,
+			"members" : 7,
+			"what" : 14,
+			"who" : "sec"
+		},
+		{
+            "name": "Accept by IRB comittiee",
+			"id" : 17,
+			"typeOf" : 3,
+			"rejectStep" : -1,
+			"acceptNext" : 18,
+			"what" : 14,
+			"whoID" : 16
+		},
+		{
+            "name": "Translations upload",
+			"id" : 18,
+			"typeOf" : 1,
+			"doc" : "test",
+			"acceptNext" : 19,
+			"who" : "$stud"
+		},
+		{
+            "name": "Translations Accept By PI",
+			"id" : 19,
+			"typeOf" : 2,
+			"acceptNext" : 20,
+			"what" : 18,
+			"whoID" : -1,
+			"prefilledMembers" : [
+				"pi"
+			]
+		},
+		{
+            "name": "Translations Accept By Sec",
+			"id" : 20,
+			"typeOf" : 2,
+			"acceptNext" : 21,
+			"what" : 18,
+			"whoID" : -1,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Selection of members for final review",
+			"id" : 21,
+			"typeOf" : 5,
+			"acceptNext" : 22,
+			"members" : 7,
+			"whoID" : -1,
+			"prefilledMembers" : [
+				"sec"
+			]
+		},
+		{
+            "name": "Final Approval",
+			"id" : 22,
+			"typeOf" : 3,
+			"rejectStep" : 19,
+			"acceptNext" : -1,
+			"what" : 18,
+			"whoID" : 21
+		}
+	],
+	"currStep" : 1
+}

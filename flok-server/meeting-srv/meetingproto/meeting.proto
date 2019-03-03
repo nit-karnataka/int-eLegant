@@ -1,0 +1,363 @@
+syntax = "proto3";
+
+package meetingproto;
+
+option go_package = "meetingproto";
+
+service MeetingService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc View(ViewRequest) returns (ViewResponse) {}
+    rpc Freeze(FreezeRequest) returns (FreezeResponse) {}
+    rpc AddInitialMembers(AddInitialMembersRequest) returns (AddInitialMembersResponse) {}
+	rpc RemoveInitialMembers(RemoveInitialMembersRequest) returns (RemoveInitialMembersResponse) {}
+    rpc SetAgenda(SetAgendaRequest) returns (SetAgendaResponse) {}
+    rpc SetMinutes(SetMinutesRequest) returns (SetMinutesResponse) {}
+    rpc ApproveMinute(ApproveMinuteRequest) returns (ApproveMinuteResponse) {}
+	rpc ApproveAgenda(ApproveAgendaRequest) returns (ApproveAgendaResponse) {}
+	rpc AddPresentMembers(AddPresentMembersRequest) returns (AddPresentMembersResponse) {}
+	rpc RemovePresentMembers(RemovePresentMembersRequest) returns (RemovePresentMembersResponse) {}
+	rpc AddQLMembers(AddQLMembersRequest) returns (AddQLMembersResponse) {}
+	rpc RemoveQLMembers(RemoveQLMembersRequest) returns (RemoveQLMembersResponse) {}
+	rpc AddFAMembers(AddFAMembersRequest) returns (AddFAMembersResponse) {}
+	rpc RemoveFAMembers(RemoveFAMembersRequest) returns (RemoveFAMembersResponse) {}
+	rpc SetTranslation(SetTranslationRequest) returns (SetTranslationResponse) {}
+	rpc AddQL(AddQLRequest) returns (AddQLResponse) {}
+	rpc SetChairPerson(SetChairPersonRequest) returns (SetChairPersonResponse) {}
+	rpc SetQLSubmitted(SetQLSubmittedRequest) returns (SetQLSubmittedResponse) {}
+	rpc AddQLR(AddQLRRequest) returns (AddQLRResponse) {}
+	rpc RemoveQLR(RemoveQLRRequest) returns (RemoveQLRResponse) {}
+	rpc ApproveQLRPI(ApproveQLRPIRequest) returns (ApproveQLRPIResponse) {}
+	rpc ApproveQLRSec(ApproveQLRSecRequest) returns (ApproveQLRSecResponse) {}
+	rpc AddTranslation(AddTranslationRequest) returns (AddTranslationResponse) {}
+	rpc RemoveTranslation(RemoveTranslationRequest) returns (RemoveTranslationResponse) {}
+	rpc ApproveTranslationPI(ApproveTranslationPIRequest) returns (ApproveTranslationPIResponse) {}
+	rpc ApproveTranslationSec(ApproveTranslationSecRequest) returns (ApproveTranslationSecResponse) {}
+	rpc SetQLReview(SetQLReviewRequest) returns (SetQLReviewResponse) {}
+	rpc SetTranslationReview(SetTranslationReviewRequest) returns (SetTranslationReviewResponse) {}
+	rpc RemoveAllApprovalMembers(RemoveAllApprovalMembersRequest) returns (RemoveAllApprovalMembersResponse) {}
+	rpc SetFA(SetFARequest) returns (SetFAResponse) {}
+	rpc SetAgendaSubmitted(SetAgendaSubmittedRequest) returns (SetAgendaSubmittedResponse) {}
+	rpc SetMinutesSubmitted(SetMinutesSubmittedRequest) returns (SetMinutesSubmittedResponse) {}
+}
+
+message InitialMember {
+	string member = 1;
+	bool status = 2;
+	string receiptDocID = 3;
+}
+
+message ApprovalMember {
+	string member = 1;
+	bool status = 2;
+	string rejectionComment = 3;
+}
+
+message Meeting {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	bool isAgendaApproved = 2;
+	string agendaDocID = 3;
+	string minutesDocID = 4;
+	repeated InitialMember initialMembers = 5;
+	repeated string presentMembers = 6;
+	repeated ApprovalMember approvalMembers = 8;
+	string agendaRejectionComment = 9;
+	// No of members for approval
+	int32 nomForApproval = 10;
+	string queryLetter = 12;
+	bool isMinutesAccepted = 13;
+	string queryLetterReply = 14;
+	bool isQLPIApproved = 15;
+	bool isQLSecApproved = 16;
+	bool isQLApproved = 17;
+	bool isTranslationApproved = 18;
+	repeated string translations = 19;
+	bool isTPIApproved = 20;
+	bool isTSecApproved = 21;
+	bool isApproved = 22;
+	bool isFreeze = 23;
+	string minutesRejectionComment = 24;
+	bool isQLSubmitted = 25;
+	bool isAgendaSubmitted = 26;
+	bool isMinutesSubmitted = 27;
+}
+
+message CreateRequest {
+	string chairPerson = 1;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message ViewRequest {
+	string id = 1;	
+}
+
+message ViewResponse {
+	Meeting meeting = 1;
+}
+
+message FreezeRequest {
+	string id = 1;
+	bool isFreeze = 2;
+}
+
+message FreezeResponse {
+}
+
+message AddInitialMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message AddInitialMembersResponse {
+}
+
+message RemoveInitialMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message RemoveInitialMembersResponse {
+}
+
+message AddPresentMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message AddPresentMembersResponse {
+}
+
+message RemovePresentMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message RemovePresentMembersResponse {
+}
+
+message SetAgendaRequest {
+	string id = 1;
+	string doc = 2;
+}
+
+message SetAgendaResponse {
+}
+
+message SetMinutesRequest {
+	string id = 1;
+	string doc = 2;
+}
+
+message SetMinutesResponse {
+}
+
+message ApproveAgendaRequest {
+	string id = 1;
+	bool approve = 2;
+	string comment = 3;
+}
+
+message ApproveAgendaResponse {
+}
+
+message ApproveMinuteRequest {
+	string id = 1;
+	bool approve = 2;
+	string comment = 3;
+}
+
+message ApproveMinuteResponse {
+}
+
+message AddQLMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message AddQLMembersResponse {
+}
+
+message RemoveQLMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message RemoveQLMembersResponse {
+}
+
+message AddFAMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message AddFAMembersResponse {
+}
+
+message RemoveFAMembersRequest {
+	string id = 1;
+	repeated string members = 2;
+}
+
+message RemoveFAMembersResponse {
+}
+
+message RemoveAllQLMembersRequest {
+}
+
+message RemoveAllQLMembersResponse {
+}
+
+message SetTranslationRequest {
+	string id = 1;
+	bool t = 2;
+}
+
+message SetTranslationResponse {
+}
+
+message AddQLRequest {
+	string id = 1;
+	string ql = 2;
+}
+
+message AddQLResponse {
+}
+
+message SetChairPersonRequest {
+	string id = 1;
+	string user = 2;
+}
+
+message SetChairPersonResponse {
+}
+
+message SetQLSubmittedRequest {
+	string id = 1;
+	bool isQLSubmitted = 2;
+}
+
+message SetQLSubmittedResponse {
+
+}
+
+message AddQLRRequest {
+	string id = 1;
+	string qlr = 2;
+}
+
+message AddQLRResponse {
+}
+
+message RemoveQLRRequest {
+	string id = 1;
+	string qlr = 2;
+}
+
+message RemoveQLRResponse {
+}
+
+message ApproveQLRPIRequest {
+	string id = 1;
+	bool isApproved = 2;
+}
+
+message ApproveQLRPIResponse {
+}
+
+message ApproveQLRSecRequest {
+	string id = 1;
+	bool isApproved = 2;
+}
+
+message ApproveQLRSecResponse {
+}
+
+message AddTranslationRequest {
+	string id = 1;
+	string translation = 2;
+}
+
+message AddTranslationResponse {
+}
+
+message RemoveTranslationRequest {
+	string id = 1;
+	string translation = 2;
+}
+
+message RemoveTranslationResponse {
+}
+
+message ApproveTranslationPIRequest {
+	string id = 1;
+	bool isApproved = 2;
+}
+
+message ApproveTranslationPIResponse {
+}
+
+message ApproveTranslationSecRequest {
+	string id = 1;
+	bool isApproved = 2;
+}
+
+message ApproveTranslationSecResponse {
+}
+
+message SetQLReviewRequest {
+	string id = 1;
+	string member = 2;
+	bool status = 3;
+	string rejectionComment = 4;
+}
+
+message SetQLReviewResponse {
+	bool isAccepted = 1;
+}
+
+message SetTranslationReviewRequest {
+	string id = 1;
+	string member = 2;
+	bool status = 3;
+	string rejectionComment = 4;
+}
+
+message SetTranslationReviewResponse {
+	bool isAccepted = 1;
+}
+
+message RemoveAllApprovalMembersRequest {
+	string id = 1;
+}
+
+message RemoveAllApprovalMembersResponse {
+}
+
+message SetFARequest {
+	string id = 1;
+	string member = 2;
+	bool status = 3;
+}
+
+message SetFAResponse {
+	bool isApproved = 1;
+}
+
+message SetAgendaSubmittedRequest {
+	string id = 1;
+	bool status = 2;
+}
+
+message SetAgendaSubmittedResponse {
+}
+
+message SetMinutesSubmittedRequest {
+	string id = 1;
+	bool status = 2;
+}
+
+message SetMinutesSubmittedResponse {
+}

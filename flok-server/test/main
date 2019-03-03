@@ -1,0 +1,95 @@
+package main
+
+import (
+	"flok-server/lib"
+
+	"github.com/globalsign/mgo/bson"
+)
+
+func main() {
+	/* const (
+		layoutISO = "2006-01-02"
+		layoutUS  = "January 2, 2006"
+	)
+	// date := "1999-12-31"
+	t, _ := time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+	fmt.Println(t) // 1999-12-31 00:00:00 +0000 UTC
+	fmt.Println(time.Now())
+	fmt.Println(t.Format(layoutUS)) // December 31, 1999 */
+
+	s := lib.Store{}
+	err := s.Connect("localhost:27017", "", "", "test")
+	if err != nil {
+		panic(err)
+	}
+
+	defer s.Close()
+
+	ss, err := s.GetMongoSession()
+	if err != nil {
+		panic(err)
+	}
+
+	/* m := &proto.Meeting{
+		Id: bson.NewObjectId().Hex(),
+		ApprovalMembers: []*proto.ApprovalMember{
+			&proto.ApprovalMember{
+				Member:           "dsfdsf",
+				Status:           true,
+				RejectionComment: "sd",
+			},
+			&proto.ApprovalMember{
+				Member:           "dsfsdasdasddsf",
+				Status:           true,
+				RejectionComment: "sfdsf",
+			},
+			&proto.ApprovalMember{
+				Member:           "dsfsdasdasddsf",
+				Status:           false,
+				RejectionComment: "sfdsf",
+			},
+			&proto.ApprovalMember{
+				Member:           "dsfsdasdasdf",
+				Status:           false,
+				RejectionComment: "sfdsfdsfdsfds",
+			},
+		},
+	} */
+
+	// err = ss.DB("").C("meetings").Update(bson.M{"_id": "5c74e3d97df5e51c7c9e1579"}, bson.M{"$pullAll": bson.M{"approvalMembers": []*proto.ApprovalMember{
+	// 	&proto.ApprovalMember{
+	// 		Member: "shdgfjkljhgjkl",
+	// 	}}}})
+
+	/* err = ss.DB("").C("meetings").Update(bson.M{"_id": "5c74e3d97df5e51c7c9e1579"}, bson.M{"$set": bson.M{
+		"approvalMembers": []*proto.ApprovalMember{},
+	}})
+	if err != nil {
+		panic(err)
+	} */
+
+	/* err = ss.DB("").C("projects").Update(bson.M{"_id": "5c751b977df5e564e9d00081"}, bson.M{
+		"$pull": bson.M{
+			"docs": "sadhjas",
+		},
+	}) */
+	err = ss.DB("").C("meetings").Update(bson.M{"_id": "5c7614707df5e567ccafe2a5", "approvalMembers.member": "12345678"}, bson.M{
+		"$set": bson.M{
+			"aprrovalMembers.$.status":           false,
+			"aprrovalMembers.$.rejectionComment": "ghjkl",
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	/* d, _ := json.MarshalIndent(m, "", "	")
+
+	err = ss.DB("").C("meetings").Insert(m)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(string(d)) */
+}

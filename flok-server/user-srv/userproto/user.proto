@@ -1,0 +1,224 @@
+syntax = "proto3";
+
+package userproto;
+
+option go_package = "userproto";
+
+service UserService {
+	rpc CreateStudent(CreateStudentRequest) returns (CreateResponse) {}
+	rpc ReadStudent(ReadRequest) returns (ReadStudentResponse) {}
+	rpc UpdateStudent(UpdateStudentRequest) returns (UpdateResponse) {}
+	rpc DeleteStudent(DeleteRequest) returns (DeleteResponse) {}
+
+	rpc CreatePI(CreatePIRequest) returns (CreateResponse) {}
+	rpc ReadPI(ReadRequest) returns (ReadPIResponse) {}
+	rpc UpdatePI(UpdatePIRequest) returns (UpdateResponse) {}
+	rpc DeletePI(DeleteRequest) returns (DeleteResponse) {}
+
+	rpc CreateCoI(CreateCoIRequest) returns (CreateResponse) {}
+	rpc ReadCoI(ReadRequest) returns (ReadCoIResponse) {}
+	rpc UpdateCoI(UpdateCoIRequest) returns (UpdateResponse) {}
+	rpc DeleteCoI(DeleteRequest) returns (DeleteResponse) {}
+
+	rpc CreateEC(CreateECRequest) returns (CreateResponse) {}
+	rpc ReadEC(ReadRequest) returns (ReadECResponse) {}
+	rpc UpdateEC(UpdateECRequest) returns (UpdateResponse) {}
+	rpc DeleteEC(DeleteRequest) returns (DeleteResponse) {}
+	rpc GetAllEC(GetAllRequest) returns (GetAllECResponse) {}
+
+	rpc CreateDOR(CreateDORRequest) returns (CreateResponse) {}
+	rpc ReadDOR(ReadRequest) returns (ReadDORResponse) {}
+	rpc UpdateDOR(UpdateDORRequest) returns (UpdateResponse) {}
+	rpc DeleteDOR(DeleteRequest) returns (DeleteResponse) {}
+
+	rpc CreateSecretariat(CreateSecretariatRequest) returns (CreateResponse) {}
+	rpc ReadSecretariat(ReadRequest) returns (ReadSecretariatResponse) {}
+	rpc UpdateSecretariat(UpdateSecretariatRequest) returns (UpdateResponse) {}
+	rpc DeleteSecretariat(DeleteRequest) returns (DeleteResponse) {}
+
+	rpc CreateHR(CreateHRRequest) returns (CreateResponse) {}
+	rpc ReadHR(ReadRequest) returns (ReadHRResponse) {}
+	rpc UpdateHR(UpdateHRRequest) returns (UpdateResponse) {}
+	rpc DeleteHR(DeleteRequest) returns (DeleteResponse) {}
+}
+
+message Student {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+	string address = 3;
+	string phoneNumber = 4;
+	string gender = 5;
+	string typeOfStudent = 6;
+	string doj = 7;
+	string created = 8;
+}
+
+message Secretariat {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+}
+
+message EC {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+	string qualification = 3;
+	string currentOrganization = 4;
+	string telephone = 5;
+	string fax = 6;
+	string designation = 7;
+	string affiliation = 8;
+	string gender = 9;
+	string position = 10;
+}
+
+message DOR {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+}
+
+message PI {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+	string address = 3;
+	string phoneNumber = 4;
+	string gender = 5;
+	string created = 6;
+}
+
+message CoI {
+	// @inject_tag: bson:"_id"
+	string email = 1;
+	string name = 2;
+	string address = 3;
+	string phoneNumber = 4;
+	string gender = 5;
+	string created = 6;
+}
+
+message HR {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	string name = 2;
+	string email = 3;
+}
+
+// COMMON
+message CreateResponse {
+}
+
+message ReadRequest {
+	string id = 1;
+}
+
+message UpdateResponse {
+}
+
+message DeleteRequest {
+	string id = 1;
+}
+
+message DeleteResponse {
+}
+
+// STUDENT
+message CreateStudentRequest {
+	Student student = 1;
+}
+
+message ReadStudentResponse {
+	Student student = 1;
+}
+
+message UpdateStudentRequest {
+	Student student = 1;
+}
+
+// EC
+message CreateECRequest {
+	EC ec = 1;
+}
+
+message ReadECResponse {
+	EC ec = 1;
+}
+
+message UpdateECRequest {
+	EC ec = 1;
+}
+
+// Secretariat
+message CreateSecretariatRequest {
+	Secretariat sec = 1;
+}
+
+message ReadSecretariatResponse {
+	Secretariat sec = 1;
+}
+
+message UpdateSecretariatRequest {
+	Secretariat sec = 1;
+}
+
+// PI
+message CreatePIRequest {
+	PI pi = 1;
+}
+
+message ReadPIResponse {
+	PI pi = 1;
+}
+
+message UpdatePIRequest {
+	PI pi = 1;
+}
+
+// CoI
+message CreateCoIRequest {
+	EC coi = 1;
+}
+
+message ReadCoIResponse {
+	CoI coi = 1;
+}
+
+message UpdateCoIRequest {
+	CoI coi = 1;
+}
+
+// DOR
+message CreateDORRequest {
+	DOR dor = 1;
+}
+
+message ReadDORResponse {
+	DOR dor = 1;
+}
+
+message UpdateDORRequest {
+	DOR dor = 1;
+}
+
+// HR
+message CreateHRRequest {
+	HR hr = 1;
+}
+
+message ReadHRResponse {
+	HR hr = 1;
+}
+
+message UpdateHRRequest {
+	HR hr = 1;
+}
+
+message GetAllRequest {
+}
+
+message GetAllECResponse {
+	repeated EC ecs = 1;
+}

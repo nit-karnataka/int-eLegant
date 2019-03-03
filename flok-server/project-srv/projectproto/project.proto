@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package projectproto;
+
+option go_package = "projectproto";
+
+service ProjectService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Read(ReadRequest) returns (ReadResponse) {}
+    rpc AddDocument(AddDocumentRequest) returns (AddDocumentResponse) {}
+    rpc RemoveDocument(RemoveDocumentRequest) returns (RemoveDocumentResponse) {}
+    rpc GetAll(GetAllRequest) returns (GetAllResponse) {}
+    rpc GetByStudent(GetByStudentRequest) returns (GetByStudentResponse) {}
+    rpc SetThesisDone(SetThesisDoneRequest) returns (SetThesisDoneResponse) {}
+    rpc SetIRBMeeting(SetIRBMeetingRequest) returns (SetIRBMeetingResponse) {}
+    rpc SetIsApproved(SetIsApprovedRequest) returns (SetIsApprovedResponse) {}
+}
+
+message ProtocolForm {
+	
+}
+
+message Project {
+	// @inject_tag: bson:"_id"
+	string id = 1;
+	string title = 2;
+	string student = 3;
+	string principalInvestigator = 4;
+	repeated string coInvestigators = 5;
+	string sec = 6;
+	string dor = 7;
+	string dots = 8;
+	string dotc = 9;
+	string createdAt = 10;
+	string thesisPortalID = 11;
+	string prPortalID = 12;
+	int32 progress = 13;
+	string piChatID = 14;
+	string secChatID = 15;
+	string dorChatID = 16;
+	string irbMeetingID = 17;
+	string doa = 18;
+	string period = 19;
+	bool isCompleted = 20;
+	repeated string documents = 21;
+	bool isIhesisDone = 22;
+	bool isIRBMeetingDone = 23;
+	bool isApproved = 24;
+
+}
+
+message CreateRequest {
+	Project project = 1;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message ReadRequest {
+	string id = 1;
+}
+
+message ReadResponse {
+	Project project = 1;
+}
+
+message AddDocumentRequest {
+	string id = 1;
+	string doc = 2;
+}
+
+message AddDocumentResponse {
+}
+
+message RemoveDocumentRequest {
+	string id = 1;
+	string doc = 2;
+}
+
+message RemoveDocumentResponse {
+}
+
+message GetAllRequest {
+}
+
+message GetAllResponse {
+	repeated Project projects = 1;
+}
+
+message GetByStudentRequest {
+	string student = 1;
+}
+
+message GetByStudentResponse {
+	repeated Project projects = 1;
+}
+
+message SetIRBMeetingRequest {
+	string id = 1;
+	bool status = 2;
+}
+
+message SetIRBMeetingResponse {
+}
+
+message SetIsApprovedRequest {
+	string id = 1;
+	bool status = 2;
+}
+
+message SetIsApprovedResponse {
+}
+
+message SetThesisDoneRequest {
+	string id = 1;
+	bool status = 2;
+}
+
+message SetThesisDoneResponse {
+}

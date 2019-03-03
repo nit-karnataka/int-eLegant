@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package fileproto;
+
+option go_package = "fileproto";
+
+service FileService {
+    rpc Create(CreateRequest) returns (CreateResponse) {}
+    rpc Read(ReadRequest) returns (ReadResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
+
+message File {
+	string name = 1;
+	bytes data = 2;
+}
+
+message CreateRequest {
+	string name = 1;
+	bytes data = 2;
+	string extension = 3;
+}
+
+message CreateResponse {
+	string id = 1;
+}
+
+message ReadRequest {
+	string name = 1;
+}
+
+message ReadResponse {
+	File file = 1;
+}
+
+message DeleteRequest {
+	string name = 1;
+}
+
+message DeleteResponse {
+}
